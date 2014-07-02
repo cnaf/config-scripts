@@ -23,8 +23,8 @@ fi
 cat << EOF > $manifest
 class { 'puppet-jenkins-slave':
         maven_servers_data => [
-          { id = 'cnaf-releases', login => '${MVN_REPO_CNAF_USER}', pwd => '${MVN_REPO_CNAF_PASSWORD}'},
-          { id = 'cnaf-snapshots', login => '${MVN_REPO_CNAF_USER}', pwd => '${MVN_REPO_CNAF_PASSWORD}'}
+          { id => 'cnaf-releases', login => '${MVN_REPO_CNAF_USER}', pwd => '${MVN_REPO_CNAF_PASSWORD}'},
+          { id => 'cnaf-snapshots', login => '${MVN_REPO_CNAF_USER}', pwd => '${MVN_REPO_CNAF_PASSWORD}'}
       ]
 }
 
