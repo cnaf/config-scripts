@@ -3,33 +3,29 @@
 modules_dir="/etc/puppet/modules"
 manifest="jenkins-manifest.pp"
 
-## Path to a comma-separated-value file describing known maven repositories 
-## and containing lines in the following format:
-## server_id,login,password
-maven_server_conf="maven_server_conf.csv"
+## These are used to setup cnaf maven repo credentials. These variables should be set
+## before running this script.
+MVN_REPO_CNAF_USER=${MVN_REPO_CNAF_USER:-''}
+MVN_REPO_CNAF_PASSWORD=${MVN_REPO_CNAF_PASSWORD:-''}
 
 echo "Creating manifest file for jenkins-slave setup"
 
-servers_params=""
-
-#Set the internal field separator to ","
-OLDIFS=$IFS
-IFS=,
-if [ -f $maven_server_conf ] && [ ! -z $maven_server_conf ]; then
-
-  while read id login pwd
-  do
-          line="{ id => '$id', login => '$login', pwd => '$pwd' },"
-          servers_params+=$line
-  done < $maven_file
-
+if [ -z "${MVN_REPO_CNAF_USER}" ]; then
+  echo "Error: MVN_REPO_CNAF_USER is not set"
+  exit 1
 fi
 
-IFS=$OLDIFS
+if [ -z "${MVN_REPO_CNAF_PASSWORD}" ]; then
+  echo "Error: MVN_REPO_CNAF_PASSWORD is not set"
+  exit 1
+fi
 
 cat << EOF > $manifest
 class { 'puppet-jenkins-slave':
-        maven_servers_data => [ $servers_params ]
+        maven_servers_data => [
+          { id = 'cnaf-releases', login => '${MVN_REPO_CNAF_USER}', pwd => '${MVN_REPO_CNAF_PASSWORD}'},
+          { id = 'cnaf-snapshots', login => '${MVN_REPO_CNAF_USER}', pwd => '${MVN_REPO_CNAF_PASSWORD}'}
+      ]
 }
 
 include puppet-users
