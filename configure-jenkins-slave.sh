@@ -32,6 +32,7 @@ include puppet-users
 include puppet-storm-build-deps
 include puppet-voms-build-deps
 include puppet-robot-framework
+include puppet-docker
 EOF
 
 echo "Installing base puppet modules"
