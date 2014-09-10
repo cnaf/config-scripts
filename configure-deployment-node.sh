@@ -17,7 +17,7 @@ manifest="deploy-manifest.pp"
 dest_file="/root/cloud-vm.tar.gz"
 
 echo "Fetching puppet modules from: ${MODULES_URL}"
-wget --no-check-certificate ${MODULES_URL} -O ${dest_file}
+wget -q --no-check-certificate ${MODULES_URL} -O ${dest_file}
 
 tar -xvzf ${dest_file} -C ${modules_dir}
 
