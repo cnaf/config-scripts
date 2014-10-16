@@ -1,31 +1,11 @@
 #!/bin/bash
-
-
-## This is used to setup url for puppet modules. This variable should be set
-## before running this script.
-
-MODULES_URL=${MODULES_URL:-''}
-
-if [ -z "${MODULES_URL}" ]; then
-  echo "Error: MODULES_URL is not set"
-  exit 1
-fi
-
 modules_dir="/etc/puppet/modules"
 manifest="deploy-manifest.pp"
 
-dest_file="/root/cloud-vm.tar.gz"
-
-echo "Fetching puppet modules from: ${MODULES_URL}"
-wget -q --no-check-certificate ${MODULES_URL} -O ${dest_file}
-
-tar -xvzf ${dest_file} -C ${modules_dir}
-
 echo "Creating manifest file"
 
-
 cat << EOF > deploy-manifest.pp
-include cloud-vm
+include puppet-cloud-vm
 include puppet-egi-trust-anchors
 include puppet-test-ca
 EOF
