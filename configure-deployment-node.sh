@@ -8,6 +8,7 @@ cat << EOF > deploy-manifest.pp
 include puppet-cloud-vm
 include puppet-egi-trust-anchors
 include puppet-test-ca
+include puppet-infn-ca
 EOF
 
 echo "Installing base puppet modules"
