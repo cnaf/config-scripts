@@ -33,6 +33,7 @@ include puppet-robot-framework
 EOF
 
 yum clean all
+yum -y update
 
 rm -rf /var/cache/yum/*
 
