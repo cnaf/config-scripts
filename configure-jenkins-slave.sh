@@ -59,5 +59,5 @@ echo "Applying the following puppet manifest: $manifest"
 cat $manifest
 
 puppet apply --debug -v \
-	--modulepath "/etc/puppet/modules:$(pwd)/ci-puppet-modules/modules" \
-	$manifest
+  --modulepath "/etc/puppet/modules:$(pwd)/ci-puppet-modules/modules" \
+  $manifest
