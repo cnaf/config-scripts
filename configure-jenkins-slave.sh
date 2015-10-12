@@ -30,7 +30,6 @@ include puppet-users
 include puppet-storm-build-deps
 include puppet-voms-build-deps
 include puppet-robot-framework
-include puppet-java
 EOF
 
 yum clean all
