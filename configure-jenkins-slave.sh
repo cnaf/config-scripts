@@ -19,6 +19,7 @@ if [ -z "${MVN_REPO_CNAF_PASSWORD}" ]; then
 fi
 
 cat << EOF > $manifest
+class { 'puppet-java': java_version => 8}
 class { 'puppet-jenkins-slave':
         maven_servers_data => [
           { id => 'cnaf-releases', login => '${MVN_REPO_CNAF_USER}', pwd => '${MVN_REPO_CNAF_PASSWORD}'},
