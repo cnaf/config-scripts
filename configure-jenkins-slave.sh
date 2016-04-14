@@ -5,6 +5,7 @@ manifest="jenkins-manifest.pp"
 ## before running this script.
 MVN_REPO_CNAF_USER=${MVN_REPO_CNAF_USER:-''}
 MVN_REPO_CNAF_PASSWORD=${MVN_REPO_CNAF_PASSWORD:-''}
+HOSTNAME=$(hostname)
 
 echo "Creating manifest file for jenkins-slave setup"
 
@@ -25,6 +26,10 @@ class { 'puppet-jenkins-slave':
           { id => 'cnaf-releases', login => '${MVN_REPO_CNAF_USER}', pwd => '${MVN_REPO_CNAF_PASSWORD}'},
           { id => 'cnaf-snapshots', login => '${MVN_REPO_CNAF_USER}', pwd => '${MVN_REPO_CNAF_PASSWORD}'}
       ]
+}
+
+host { '${HOSTNAME}':
+  ip => '127.0.0.1',
 }
 
 include puppet-users
