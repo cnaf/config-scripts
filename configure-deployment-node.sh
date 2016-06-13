@@ -2,8 +2,8 @@
 modules_dir="/etc/puppet/modules"
 manifest="deploy-manifest.pp"
 
-echo "Installing puppet package ... "
-yum install -y puppet
+echo "Installing base packages ... "
+yum install -y puppet git
 
 echo "Creating manifest file"
 
