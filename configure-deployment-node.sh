@@ -2,6 +2,9 @@
 modules_dir="/etc/puppet/modules"
 manifest="deploy-manifest.pp"
 
+echo "Installing puppet package ... "
+yum install -y puppet
+
 echo "Creating manifest file"
 
 cat << EOF > deploy-manifest.pp
