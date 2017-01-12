@@ -20,8 +20,8 @@ if [ -z "${MVN_REPO_CNAF_PASSWORD}" ]; then
 fi
 
 cat << EOF > $manifest
-class { 'puppet-java': java_version => 8}
-class { 'puppet-jenkins-slave':
+class { 'mwdevel_java': java_version => 8}
+class { 'mwdevel_jenkins_slave':
         maven_servers_data => [
           { id => 'cnaf-releases', login => '${MVN_REPO_CNAF_USER}', pwd => '${MVN_REPO_CNAF_PASSWORD}'},
           { id => 'cnaf-snapshots', login => '${MVN_REPO_CNAF_USER}', pwd => '${MVN_REPO_CNAF_PASSWORD}'}
@@ -32,10 +32,10 @@ host { '${HOSTNAME}':
   ip => '127.0.0.1',
 }
 
-include puppet-users
-include puppet-storm-build-deps
-include puppet-voms-build-deps
-include puppet-robot-framework
+include mwdevel_users
+include mwdevel_storm_build_deps
+include mwdevel_voms_build_deps
+include mwdevel_robot_framework
 EOF
 
 yum clean all
