@@ -8,7 +8,7 @@ yum install -y puppet git
 echo "Creating manifest file"
 
 cat << EOF > deploy-manifest.pp
-include mwdevel_cloud_vm
+include puppet-cloud-vm
 include mwdevel_egi_trust_anchors
 include mwdevel_test_ca
 include mwdevel_infn_ca
